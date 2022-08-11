@@ -1,0 +1,1 @@
+# Schematics for kinematic analysis
