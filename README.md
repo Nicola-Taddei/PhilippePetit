@@ -1,2 +1,2 @@
 # TwoWheel
-Schematics, calculations and code for a two wheel self balancing robot
+Schematics, calculations and code for a two wheels self balancing robot
