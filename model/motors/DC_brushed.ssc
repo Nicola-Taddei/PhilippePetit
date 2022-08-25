@@ -1,0 +1,52 @@
+
+
+component DC_brushed
+    nodes
+        p = foundation.electrical.electrical;
+        n = foundation.electrical.electrical;
+        a = foundation.mechanical.rotational.rotational;
+        b = foundation.mechanical.rotational.rotational;
+    end
+    
+    variables
+        i = { 0, 'A' };          % Current
+        v = { 0, 'V' };          % Voltage
+        theta = { 0, 'rad' };    % Angular position
+        w = { 0, 'rad/s' };      % Angular speed
+        torque = { 0, 'N*m' };   % Torque
+        Td = { 0, 'N*m' };       % Damping torque
+    end
+    
+    parameters
+        Jm = { 1, 'kg*m^2' };     % Inertia
+        rm = { 1, '(N*m)/(rad/s)' };  % Damping coefficient
+        Kt = { 1, '(N*m)/A' };      % Torque coefficient
+        Kv = { 1, 'V/(rad/s)' };    % Back EMF coefficient
+        R  = { 1, 'Ohm' };       % Internal resistance
+        L  = { 1, 'H' };         % Internal inductance
+    end
+    
+    equations
+        v == p.v - n.v;
+        w == a.w - b.w;
+        w == der(theta);
+        Td == rm*w;
+        torque + Td == Kt*i - Jm*der(w);
+        L*der(i) + R*i + Kv*w == v;
+    end
+    
+    branches
+        i : p.i -> n.i;
+        torque : a.t -> b.t;
+    end
+end
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
