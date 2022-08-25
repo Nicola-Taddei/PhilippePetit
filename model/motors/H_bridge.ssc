@@ -1,0 +1,7 @@
+component H_bridge
+    
+    nodes
+        V = foundation.electrical.electrical;
+        Vn = foundation.electrical.electrical;
+        Vgnd = foundation.electrical.electrical;
+        

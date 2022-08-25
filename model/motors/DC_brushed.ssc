@@ -14,7 +14,6 @@ component DC_brushed
         theta = { 0, 'rad' };    % Angular position
         w = { 0, 'rad/s' };      % Angular speed
         torque = { 0, 'N*m' };   % Torque
-        Td = { 0, 'N*m' };       % Damping torque
     end
     
     parameters
@@ -30,8 +29,7 @@ component DC_brushed
         v == p.v - n.v;
         w == a.w - b.w;
         w == der(theta);
-        Td == rm*w;
-        torque + Td == Kt*i - Jm*der(w);
+        torque == Kt*i - Jm*der(w) - rm*w;
         L*der(i) + R*i + Kv*w == v;
     end
     
